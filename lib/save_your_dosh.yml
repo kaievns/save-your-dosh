@@ -1,0 +1,14 @@
+new_relic:
+  app_id:  some app id
+  api_key: some api key
+
+dynos:
+  min:  1
+  max:  5
+
+workers:
+  min:  1
+  max:  5
+  jobs: 20 # jobs per a worker
+
+notify: some@email.com
