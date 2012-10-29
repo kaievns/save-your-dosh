@@ -4,6 +4,8 @@ describe SaveYourDosh::NewRelic do
 
   describe ".get_app_id" do
     before do
+      SaveYourDosh::NewRelic.should_receive(:`).and_return('')
+
       @config = SaveYourDosh::Config.new
       @config.new_relic = {
         'acc_id'  => 'acc-id',

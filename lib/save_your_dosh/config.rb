@@ -10,11 +10,13 @@ class SaveYourDosh::Config
   KEYS.each{ |key| attr_accessor key }
 
   def initialize
-    read DEFAULTS
+    @new_relic = {
+      'acc_id'  => ENV['NEW_RELIC_ID'],
+      'app_id'  => ENV['NEW_RELIC_APP_ID'],
+      'api_key' => ENV['NEW_RELIC_API_KEY']
+    }
 
-    @new_relic['acc_id']  = ENV['NEW_RELIC_ID']
-    @new_relic['app_id']  = ENV['NEW_RELIC_APP_ID']
-    @new_relic['api_key'] = ENV['NEW_RELIC_API_KEY']
+    read DEFAULTS
   end
 
   def read(file)
@@ -23,6 +25,8 @@ class SaveYourDosh::Config
     KEYS.each do |key|
       instance_variable_set "@#{key}", config[key] if config.has_key?(key)
     end
+
+    @new_relic['app_id'] = SaveYourDosh::NewRelic.get_app_id(self)
   end
 
 end

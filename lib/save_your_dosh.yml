@@ -1,16 +1,11 @@
 interval: 3 # minutes
 
-new_relic:
-  acc_id:  "<%= ENV['NEW_RELIC_ID'] %>"
-  app_id:  "<%= ENV['NEW_RELIC_APP_ID'] %>"
-  api_key: "<%= ENV['NEW_RELIC_API_KEY'] %>"
-
 dynos:
   min:  1
   max:  5
 
 workers:
-  min:  1
+  min:  0
   max:  5
   jobs: 20 # jobs per a worker
 

@@ -12,7 +12,7 @@ class SaveYourDosh::NewRelic
   def self.get_app_id(config)
     app_id = (config.new_relic['app_id'] || '').to_s
 
-    if !(app_id =~ /^\d+$/)
+    if app_id.size > 0 && !(app_id =~ /^\d+$/)
       data = APPS_CMD % {
         acc_id:  config.new_relic['acc_id'],
         api_key: config.new_relic['api_key']
