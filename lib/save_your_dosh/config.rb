@@ -5,7 +5,7 @@ require 'yaml'
 
 class SaveYourDosh::Config
   DEFAULTS = File.dirname(__FILE__) + "/../save_your_dosh.yml"
-  KEYS     = %w{ new_relic dynos workers notify interval }
+  KEYS     = %w{ new_relic heroku dynos workers notify interval }
 
   KEYS.each{ |key| attr_accessor key }
 
@@ -14,6 +14,12 @@ class SaveYourDosh::Config
       'acc_id'  => ENV['NEW_RELIC_ID'],
       'app_id'  => ENV['NEW_RELIC_APP_ID'],
       'api_key' => ENV['NEW_RELIC_API_KEY']
+    }
+
+    @heroku = {
+      'app_id'   => ENV['APP_NAME'],
+      'login'    => ENV['SYD_LOGIN'],
+      'password' => ENV['SYD_PASSWORD']
     }
 
     read DEFAULTS

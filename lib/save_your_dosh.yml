@@ -3,6 +3,7 @@ interval: 5 # minutes
 dynos:
   min:  1
   max:  5
+  threshold: 50 # % of system busyness when we kick in/out a dyno
 
 workers:
   min:  0

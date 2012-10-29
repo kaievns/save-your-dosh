@@ -7,12 +7,16 @@ describe SaveYourDosh::Config do
       ENV['NEW_RELIC_APP_ID']  = '12345'
       ENV['NEW_RELIC_API_KEY'] = 'api-key'
 
+      ENV['APP_NAME']          = 'app-name'
+      ENV['SYD_LOGIN']         = 'syd-login'
+      ENV['SYD_PASSWORD']      = 'syd-password'
+
       @config = SaveYourDosh::Config.new
     end
 
     it "should have default dynos data" do
       @config.dynos.should == {
-        "min" => 1, "max" => 5
+        "min" => 1, "max" => 5, "threshold" => 50
       }
     end
 
@@ -39,6 +43,14 @@ describe SaveYourDosh::Config do
       @config.read SaveYourDosh::Config::DEFAULTS
 
       @config.new_relic['app_id'].should == '123456'
+    end
+
+    it "should assign the heroku credentials from the ENV data" do
+      @config.heroku.should == {
+        'app_id'   => ENV['APP_NAME'],
+        'login'    => ENV['SYD_LOGIN'],
+        'password' => ENV['SYD_PASSWORD']
+      }
     end
   end
 end
