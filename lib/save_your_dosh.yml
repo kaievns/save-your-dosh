@@ -1,4 +1,4 @@
-interval: 3 # minutes
+interval: 5 # minutes
 
 dynos:
   min:  1
