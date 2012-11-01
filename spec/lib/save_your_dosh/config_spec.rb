@@ -8,8 +8,8 @@ describe SaveYourDosh::Config do
       ENV['NEW_RELIC_API_KEY']  = 'api-key'
 
       ENV['APP_NAME']           = 'app-name'
-      ENV['SYD_LOGIN']          = 'syd-login'
-      ENV['SYD_PASSWORD']       = 'syd-password'
+      ENV['HEROKU_LOGIN']       = 'syd-login'
+      ENV['HEROKU_PASSWORD']    = 'syd-password'
 
       @config = SaveYourDosh::Config.new
     end
@@ -48,8 +48,8 @@ describe SaveYourDosh::Config do
     it "should assign the heroku credentials from the ENV data" do
       @config.heroku.should == {
         'app_id'   => ENV['APP_NAME'],
-        'login'    => ENV['SYD_LOGIN'],
-        'password' => ENV['SYD_PASSWORD']
+        'login'    => ENV['HEROKU_LOGIN'],
+        'password' => ENV['HEROKU_PASSWORD']
       }
     end
   end

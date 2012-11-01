@@ -18,8 +18,8 @@ class SaveYourDosh::Config
 
     @heroku = {
       'app_id'   => ENV['APP_NAME'],
-      'login'    => ENV['SYD_LOGIN'],
-      'password' => ENV['SYD_PASSWORD']
+      'login'    => ENV['HEROKU_LOGIN'],
+      'password' => ENV['HEROKU_PASSWORD']
     }
 
     read DEFAULTS
