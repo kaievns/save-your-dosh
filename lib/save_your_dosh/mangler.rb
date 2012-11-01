@@ -12,7 +12,7 @@ class SaveYourDosh::Mangler
 
   def mangle_dynos!
     mangle! :dynos do |qty|
-      load = SaveYourDosh::NewRelic.get_application_busyness
+      load = SaveYourDosh::NewRelic.get_dynos_load
       qty  + (load > @config.dynos['threshold'] ? 1 : -1)
     end
   end

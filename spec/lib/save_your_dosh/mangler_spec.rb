@@ -24,7 +24,7 @@ describe SaveYourDosh::Mangler do
         with(@config.heroku['app_id']).
         and_return(2)
 
-      SaveYourDosh::NewRelic.should_receive(:get_application_busyness).
+      SaveYourDosh::NewRelic.should_receive(:get_dynos_load).
         and_return(40)
     end
 
