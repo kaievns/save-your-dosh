@@ -1,2 +1,2 @@
 gem 'heroku'
-gem 'nokogiri'
+gem 'json'

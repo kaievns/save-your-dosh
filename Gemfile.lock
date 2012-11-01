@@ -10,11 +10,11 @@ GEM
       rubyzip
     heroku-api (0.3.5)
       excon (~> 0.16.1)
+    json (1.7.5)
     launchy (2.1.2)
       addressable (~> 2.3)
     mime-types (1.19)
     netrc (0.7.7)
-    nokogiri (1.5.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rubyzip (0.9.9)
@@ -24,4 +24,4 @@ PLATFORMS
 
 DEPENDENCIES
   heroku
-  nokogiri
+  json
