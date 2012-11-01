@@ -68,3 +68,23 @@ class SaveYourDosh::NewRelic
   end
 
 end
+
+# cmd = %Q{
+#   curl --silent -H "x-api-key: 2b898de6a0199a9738d51a691a047fabc83e0f8020bf49e" \
+#   -d "metrics[]=Instance/Busy" \
+#   -d "field=busy_percent" \
+#   -d "begin=#{(Time.now - 3 * 60)}" \
+#   -d "end=#{Time.now}" \
+#   -d "summary=1" \
+#   -d "app=doshmosh" \
+#   https://api.newrelic.com/api/v1/accounts/81612/metrics/data.json
+# }.strip
+
+# # "metric_type" => "Instance/Busy",
+# #  "fields" => "busy_percent",
+
+# puts "\n--------\n"
+# puts cmd
+# puts "\n"
+# puts `#{cmd}`
+# puts "\n"

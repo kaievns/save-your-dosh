@@ -12,7 +12,7 @@ class SaveYourDosh::Config
   def initialize
     @new_relic = {
       'acc_id'  => ENV['NEW_RELIC_ID'],
-      'app_id'  => ENV['NEW_RELIC_APP_ID'],
+      'app_id'  => ENV['NEW_RELIC_APP_NAME'],
       'api_key' => ENV['NEW_RELIC_API_KEY']
     }
 
