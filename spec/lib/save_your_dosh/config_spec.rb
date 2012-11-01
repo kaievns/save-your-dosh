@@ -34,17 +34,6 @@ describe SaveYourDosh::Config do
       }
     end
 
-    it "should try to figure the new-relic app-id by it's name if you didn't have an id" do
-      ENV['NEW_RELIC_APP_NAME'] = 'my-app'
-
-      SaveYourDosh::NewRelic.should_receive(:get_app_id).
-        with(@config).and_return('123456')
-
-      @config.read SaveYourDosh::Config::DEFAULTS
-
-      @config.new_relic['app_id'].should == '123456'
-    end
-
     it "should assign the heroku credentials from the ENV data" do
       @config.heroku.should == {
         'app_id'   => ENV['APP_NAME'],

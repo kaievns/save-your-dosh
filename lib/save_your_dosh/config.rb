@@ -31,8 +31,6 @@ class SaveYourDosh::Config
     KEYS.each do |key|
       instance_variable_set "@#{key}", config[key] if config.has_key?(key)
     end
-
-    @new_relic['app_id'] = SaveYourDosh::NewRelic.get_app_id(self)
   end
 
 end
