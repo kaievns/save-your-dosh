@@ -12,7 +12,7 @@ describe SaveYourDosh::Mangler do
     @heroku  = Heroku::API.new(api_key: 'boo hoo')
 
     Heroku::API.should_receive(:new).
-      with(@config.heroku).
+      with(api_key: @config.heroku['api_key']).
       and_return(@heroku)
 
     @mangler = SaveYourDosh::Mangler.new

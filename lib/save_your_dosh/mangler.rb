@@ -7,7 +7,7 @@ class SaveYourDosh::Mangler
 
   def initialize
     @config = SaveYourDosh.config
-    @heroku = Heroku::API.new(@config.heroku)
+    @heroku = Heroku::API.new(api_key: @config.heroku['api_key'])
   end
 
   def mangle_dynos!
