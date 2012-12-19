@@ -38,6 +38,8 @@ private
     new_qty = max_qty if new_qty > max_qty
 
     if new_qty != qty
+      Rails.logger.info "SaveYourDosh: mangling with the #{what}, #{qty} -> #{new_qty}" if defined? Rails
+
       @heroku.send("put_#{what}", @config.heroku['app_id'], new_qty)
     end
   end
