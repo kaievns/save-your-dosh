@@ -21,4 +21,8 @@ module SaveYourDosh
     mangler.mangle_workers!
   end
 
+  Dir[File.join(File.dirname(__FILE__),'tasks/*.rake')].each { |ext|
+    load ext
+  } if defined?(Rake)
+
 end
