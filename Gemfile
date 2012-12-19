@@ -1,2 +1,2 @@
-gem 'heroku'
+gem 'heroku-api'
 gem 'json'

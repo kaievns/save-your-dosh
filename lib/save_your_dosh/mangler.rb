@@ -1,13 +1,13 @@
 #
 # Mangles with the actual heroku settings
 #
-require 'heroku'
+require 'heroku-api'
 
 class SaveYourDosh::Mangler
 
   def initialize
     @config = SaveYourDosh.config
-    @heroku = Heroku::Client.new(@config.heroku['login'], @config.heroku['password'])
+    @heroku = Heroku::API.new(@config.heroku)
   end
 
   def mangle_dynos!
@@ -28,7 +28,7 @@ private
   # a little wrapper to avoid problems with setting/getting
   # a wrong thing
   def mangle!(what, &block)
-    qty     = @heroku.send(what, @config.heroku['app_id'])
+    qty     = @heroku.get_app(@config.heroku['app_id']).body[what.to_s]
     new_qty = yield(qty)
 
     min_qty = @config.send(what)['min']
@@ -38,7 +38,7 @@ private
     new_qty = max_qty if new_qty > max_qty
 
     if new_qty != qty
-      @heroku.send("set_#{what}", @config.heroku['app_id'], new_qty)
+      @heroku.send("put_#{what}", @config.heroku['app_id'], new_qty)
     end
   end
 

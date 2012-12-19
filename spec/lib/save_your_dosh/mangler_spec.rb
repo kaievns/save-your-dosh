@@ -9,10 +9,10 @@ describe SaveYourDosh::Mangler do
       'password' => 'my-password'
     }
 
-    @heroku  = Heroku::Client.new('boo', 'hoo')
+    @heroku  = Heroku::API.new(api_key: 'boo hoo')
 
-    Heroku::Client.should_receive(:new).
-      with(@config.heroku['login'], @config.heroku['password']).
+    Heroku::API.should_receive(:new).
+      with(@config.heroku).
       and_return(@heroku)
 
     @mangler = SaveYourDosh::Mangler.new
@@ -20,9 +20,9 @@ describe SaveYourDosh::Mangler do
 
   describe ".mangle_dynos!" do
     before do
-      @heroku.should_receive(:dynos).
+      @heroku.should_receive(:get_app).
         with(@config.heroku['app_id']).
-        and_return(2)
+        and_return(Struct.new(:body).new({'dynos' => 2, 'workers' => 1}))
 
       SaveYourDosh::NewRelic.should_receive(:get_dynos_load).
         and_return(40)
@@ -31,7 +31,7 @@ describe SaveYourDosh::Mangler do
     it "should try to add dynos if we're getting over the threshold" do
       @config.dynos['threshold'] = 30
 
-      @heroku.should_receive(:set_dynos).
+      @heroku.should_receive(:put_dynos).
         with(@config.heroku['app_id'], 3)
 
       @mangler.mangle_dynos!
@@ -40,7 +40,7 @@ describe SaveYourDosh::Mangler do
     it "should try to remove dynos if we're below the threshold" do
       @config.dynos['threshold'] = 50
 
-      @heroku.should_receive(:set_dynos).
+      @heroku.should_receive(:put_dynos).
         with(@config.heroku['app_id'], 1)
 
       @mangler.mangle_dynos!
@@ -51,7 +51,7 @@ describe SaveYourDosh::Mangler do
       @config.dynos['min']       = 2
       @config.dynos['max']       = 2
 
-      @heroku.should_not_receive(:set_dynos)
+      @heroku.should_not_receive(:put_dynos)
 
       @mangler.mangle_dynos!
     end
@@ -61,7 +61,7 @@ describe SaveYourDosh::Mangler do
       @config.dynos['min']       = 1
       @config.dynos['max']       = 2
 
-      @heroku.should_not_receive(:set_dynos)
+      @heroku.should_not_receive(:put_dynos)
 
       @mangler.mangle_dynos!
     end

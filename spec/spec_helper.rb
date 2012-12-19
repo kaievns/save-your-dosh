@@ -1,6 +1,5 @@
-
 require 'rspec'
-require 'heroku'
+require 'heroku-api'
 
 require File.dirname(__FILE__) + "/../lib/save_your_dosh.rb"
 
@@ -12,21 +11,17 @@ class SaveYourDosh::NewRelic
 end
 
 # disabling the Horoku::Client real interactions
-class Heroku::Client
-  def initialize(login, password)
+class Heroku::API
+  def initialize(*args)
   end
 
-  def dynos(name)
-    1
+  def get_app(name)
+    Struct.new(:body).new({'dynos' => 1, 'workers' => 1})
   end
 
-  def workers(name)
-    1
+  def put_dynos(name, qty)
   end
 
-  def set_dynos(name, qty)
-  end
-
-  def set_workers(name, qty)
+  def put_workers(name, qty)
   end
 end
