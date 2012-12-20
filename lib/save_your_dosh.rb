@@ -4,7 +4,7 @@
 module SaveYourDosh
   extend self
 
-  VERSION = '0.0.0'
+  VERSION = '1.0.0'
 
   autoload :Config,   'save_your_dosh/config.rb'
   autoload :Mangler,  'save_your_dosh/mangler.rb'
