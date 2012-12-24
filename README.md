@@ -1,7 +1,7 @@
 # Save Your Dosh
 
 This is a little gem for [heroku](http://heroku.com) that automatically scales
-dynos in your heroku based app.
+dynos in your heroku/rails based app.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ new relic will kick your ass)
 
 ## Configuration
 
-You can mangle with the settings by creating a file like that in your rails app `config/save-your-dosh.yaml`
+You can mangle with the settings by creating a file like that in your rails app `config/save-your-dosh.yml`
 
 ```yml
 dynos:
@@ -48,7 +48,7 @@ dynos:
 ## How It Works
 
 It's pretty simple, every time you kick the `rake save:your:dosh` task via cron or scheduler,
-it will make a request to the new relic servers for the data on your application business. If
+it will make a request to the new relic servers for the data on your application busyness. If
 it goes over the threshold, it will increase the amount of dynos until reaches the max number
 from the config. Otherwise it will try to switch dynos off until reaches the minimal amount.
 
