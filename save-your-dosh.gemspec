@@ -9,6 +9,8 @@ Gem::Specification.new do |s|
   s.authors  = ['Nikolay Nemshilov']
   s.email    = 'nemshilov@gmail.com'
   s.homepage = 'http://github.com/MadRabbit/save-your-dosh'
+  s.add_dependency('heroku-api', '>= 0.3.7')
+  s.add_dependency('json', '>= 1.7.5')
 
   s.files = Dir['lib/**/*'] + Dir['spec/**/*']
   s.files+= %w(
