@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name    = 'save-your-dosh'
-  s.version = '1.0.1'
+  s.version = '1.0.2'
   s.date    = '2012-12-22'
 
   s.summary = "Heroku dynos auto-scaling thing"
