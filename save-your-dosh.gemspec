@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name    = 'save-your-dosh'
-  s.version = '1.0.1'
-  s.date    = '2012-12-22'
+  s.version = '1.0.2'
+  s.date    = '2013-1-16'
 
   s.summary = "Heroku dynos auto-scaling thing"
   s.description = "This gem can automatically scale the dynos amount on your heroku app depending on your system busyness"
