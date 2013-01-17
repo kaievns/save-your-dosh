@@ -22,12 +22,19 @@ Make sure you have the following `ENV` vars in your heroku config
 » heroku config
 === doshmosh Config Vars
 .....
+APP_NAME:                   your-heroku-app-name
 HEROKU_API_KEY:             your-heroku-api-key
 NEW_RELIC_API_KEY:          your-new-relic-api-key
 NEW_RELIC_APP_NAME:         your-app-name-on-new-relic
 NEW_RELIC_ID:               your-account-id-on-new-relic
 ......
 ```
+
+It is very likely have you won't already have your APP_NAME and HEROKU_API_KEY in there, 
+so add them with `heroku config:add APP_NAME=foobar HEROKU_API_KEY=your_api_key`. 
+
+You can get your Heroku API Key from https://dashboard.heroku.com/account but unfortunately, 
+Heroku's API is currenly on a per-account basis, not a per-application basis. 
 
 Once you've done with those, add the `rake save:your:dosh` task in heroku's scheduler
 and set the minimal timeout of `10 mins`. (don't make it less than 6 mins, otherwise
