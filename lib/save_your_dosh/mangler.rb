@@ -28,7 +28,7 @@ private
   # a little wrapper to avoid problems with setting/getting
   # a wrong thing
   def mangle!(what, &block)
-    qty     = @heroku.get_app(@config.heroku['app_id']).body[0][what.to_s]
+    qty     = @heroku.get_app(@config.heroku['app_id']).body[what.to_s]
     new_qty = yield(qty)
 
     min_qty = @config.send(what)['min']
