@@ -22,7 +22,7 @@ describe SaveYourDosh::Mangler do
     before do
       @heroku.should_receive(:get_app).
         with(@config.heroku['app_id']).
-        and_return(Struct.new(:body).new({'dynos' => 2, 'workers' => 1}))
+        and_return(Struct.new(:body).new([{'dynos' => 2, 'workers' => 1}]))
 
       SaveYourDosh::NewRelic.should_receive(:get_dynos_load).
         and_return(40)
